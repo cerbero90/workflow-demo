@@ -29,4 +29,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $fillable = array('name', 'email', 'password');
 
+	/**
+	 * @author	Andrea Marco Sartori
+	 * @var		array	$dates	Custom dates to include.
+	 */
+	protected $dates = array('last_login');
+
 }
