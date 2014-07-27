@@ -35,4 +35,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $dates = array('last_login');
 
+	/**
+	 * Name setter.
+	 *
+	 * @author	Andrea Marco Sartori
+	 * @param	string	$value
+	 * @return	void
+	 */
+	public function setNameAttribute($value)
+	{
+		$this->attributes['name'] = ucfirst($value);
+	}
+
 }
