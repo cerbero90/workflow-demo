@@ -95,6 +95,7 @@ return array(
 
 	'providers' => array(
 
+		'Cerbero\Workflow\WorkflowServiceProvider',
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
 		'Illuminate\Cache\CacheServiceProvider',
