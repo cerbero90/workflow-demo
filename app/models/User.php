@@ -47,4 +47,18 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$this->attributes['name'] = ucfirst($value);
 	}
 
+	/**
+	 * Password setter.
+	 *
+	 * @author	Andrea Marco Sartori
+	 * @param	string	$value
+	 * @return	void
+	 */
+	public function setPasswordAttribute($value)
+	{
+		$password = Hash::needsRehash($value) ? Hash::make($value) : $value;
+
+		$this->attributes['password'] = $password;
+	}
+
 }
