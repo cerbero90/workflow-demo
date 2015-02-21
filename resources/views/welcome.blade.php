@@ -33,9 +33,24 @@
 			.quote {
 				font-size: 24px;
 			}
+
+			p {
+				background-color: #DFF0D8;
+				color: #3C763D;
+				font-weight: bold;
+				margin: 0;
+				padding: 10px 0;
+				position: absolute;
+				text-align: center;
+				top: 0;
+				width: 100%;
+			}
 		</style>
 	</head>
 	<body>
+		@if($message = session('success'))
+		<p>{{ $message }}</p>
+		@endif
 		<div class="container">
 			<div class="content">
 				<div class="title">Laravel 5</div>
