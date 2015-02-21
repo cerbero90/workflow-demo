@@ -139,6 +139,7 @@ return [
 		/*
 		 * Application Service Providers...
 		 */
+		'Cerbero\Workflow\WorkflowServiceProvider',
 		'App\Providers\AppServiceProvider',
 		'App\Providers\BusServiceProvider',
 		'App\Providers\ConfigServiceProvider',
