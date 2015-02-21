@@ -1,19 +1,9 @@
 <?php namespace App\Workflows\RegisterUser;
 
 use Cerbero\Workflow\Pipes\AbstractPipe;
+use Illuminate\Contracts\Mail\Mailer;
 
 class Notify extends AbstractPipe {
-
-	/**
-	 * Run before the command is handled.
-	 *
-	 * @param	App\Commands\Command	$command
-	 * @return	mixed
-	 */
-	public function before($command)
-	{
-		//
-	}
 
 	/**
 	 * Run after the handled command.
@@ -22,9 +12,12 @@ class Notify extends AbstractPipe {
 	 * @param	App\Commands\Command	$command
 	 * @return	mixed
 	 */
-	public function after($handled, $command)
+	public function after(Mailer $mailer, $handled, $command)
 	{
-		//
+		$mailer->send('emails.registration', ['id' => $handled->id], function($message) use($command)
+		{
+			$message->to($command->email, $command->name)->subject('Welcome!');
+		});
 	}
 
 }
