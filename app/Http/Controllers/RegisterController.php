@@ -14,7 +14,7 @@ class RegisterController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		return view('auth/register');
 	}
 
 	/**
@@ -24,7 +24,9 @@ class RegisterController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$user = $this->workflow->registerUser();
+
+		return redirect('/')->withSuccess("{$user->name} has successfully registered!");
 	}
 
 }
