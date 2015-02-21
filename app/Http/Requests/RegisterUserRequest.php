@@ -11,7 +11,7 @@ class RegisterUserRequest extends Request {
 	 */
 	public function authorize()
 	{
-		return false;
+		return true;
 	}
 
 	/**
@@ -22,7 +22,9 @@ class RegisterUserRequest extends Request {
 	public function rules()
 	{
 		return [
-			//
+			'name'     => 'required|min:3',
+			'email'    => 'required|email',
+			'password' => 'required|confirmed|min:6',
 		];
 	}
 
