@@ -1,6 +1,7 @@
 <?php namespace App\Workflows\RegisterUser;
 
 use Cerbero\Workflow\Pipes\AbstractPipe;
+use Illuminate\Contracts\Hashing\Hasher;
 
 class Hash extends AbstractPipe {
 
@@ -10,21 +11,12 @@ class Hash extends AbstractPipe {
 	 * @param	App\Commands\Command	$command
 	 * @return	mixed
 	 */
-	public function before($command)
+	public function before(Hasher $hasher, $command)
 	{
-		//
-	}
-
-	/**
-	 * Run after the handled command.
-	 *
-	 * @param	mixed	$handled
-	 * @param	App\Commands\Command	$command
-	 * @return	mixed
-	 */
-	public function after($handled, $command)
-	{
-		//
+		if($hasher->needsRehash($password = $command->password))
+		{
+			$command->password = $hasher->make($password);
+		}
 	}
 
 }
