@@ -1,7 +1,7 @@
 <?php namespace App\Commands;
 
+use App\User;
 use App\Commands\Command;
-
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class RegisterUserCommand extends Command implements SelfHandling {
@@ -11,9 +11,11 @@ class RegisterUserCommand extends Command implements SelfHandling {
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct($name, $email, $password)
 	{
-		//
+		$this->name     = $name;
+		$this->email    = $email;
+		$this->password = $password;
 	}
 
 	/**
@@ -21,9 +23,9 @@ class RegisterUserCommand extends Command implements SelfHandling {
 	 *
 	 * @return void
 	 */
-	public function handle()
+	public function handle(User $user)
 	{
-		//
+		return $user->create((array) $this);
 	}
 
 }
